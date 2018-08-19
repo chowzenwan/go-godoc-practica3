@@ -1,23 +1,24 @@
 package pageobjects
 
 import (
-	"github.com/tebeka/selenium"
 	"practica3/support"
 	"strings"
 	"time"
+
+	"github.com/tebeka/selenium"
 )
 
 var driver selenium.WebDriver
 
-var(
-	searchInput = "input#search_query_top"
-	searchButton = "button[name='submit_search']"
-	listViewButton = "i.icon-th-list"
+var (
+	searchInput     = "input#search_query_top"
+	searchButton    = "button[name='submit_search']"
+	listViewButton  = "i.icon-th-list"
 	addToCartButton = "a.ajax_add_to_cart_button"
-	cartMessage = "span[class*=ajax_cart_product_txt]:not([class*='unvisible'])"
+	cartMessage     = "span[class*=ajax_cart_product_txt]:not([class*='unvisible'])"
 )
 
-func ByCss (locator string) (element selenium.WebElement, err error) {
+func ByCss(locator string) (element selenium.WebElement, err error) {
 	element, err = driver.FindElement(selenium.ByCSSSelector, locator)
 	if err != nil {
 		return
@@ -25,51 +26,51 @@ func ByCss (locator string) (element selenium.WebElement, err error) {
 	return element, nil
 }
 
-func InitWebDriver(){
+func InitWebDriver() {
 	driver = support.WDInit()
 }
 
-func LoadPage (url string){
+func LoadPage(url string) {
 	driver.Get(url)
 }
 
-func WriteText (term string) (err error) {
+func WriteText(term string) (err error) {
 	//driver.SetImplicitWaitTimeout(time.Second * 5)
 	element, err := ByCss(searchInput)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	element.SendKeys(term)
 	return nil
 }
 
-func ClickSearch () {
+func ClickSearch() {
 	element, err := ByCss(searchButton)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	element.Click()
 }
 
-func ClickListView () {
+func ClickListView() {
 	element, err := ByCss(listViewButton)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	element.Click()
 }
 
-func AddToCart(){
+func AddToCart() {
 	element, err := ByCss(addToCartButton)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	element.Click()
 }
 
-func GetAddToCartMessage() (message string){
+func GetAddToCartMessage() (message string) {
 	element, err := ByCss(cartMessage)
-	if err != nil{
+	if err != nil {
 		return
 	}
 	elementInnerText, _ := element.GetAttribute("innerText")
@@ -78,12 +79,12 @@ func GetAddToCartMessage() (message string){
 	return message
 }
 
-func TakeScreenShot(fileName string){
-	time.Sleep(time.Millisecond * 2000)
+func TakeScreenShot(fileName string) {
+	time.Sleep(time.Millisecond * 1000)
 	shot, _ := driver.Screenshot()
 	support.SaveImage(shot, fileName)
 }
 
-func ClosePage (){
+func ClosePage() {
 	driver.Quit()
 }

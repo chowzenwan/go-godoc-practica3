@@ -1,6 +1,6 @@
 # go-godog-practica3
 
-Primer intento de hacer BBD y POM usando Go con Godog!
+Primer intento de hacer BBD y POM usando Godog! :D
 
 Run :
     go get github.com/DATA-DOG/godog/cmd/godog

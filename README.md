@@ -5,7 +5,7 @@ Primer intento de hacer BBD y POM usando Godog! :D
 Run :
     go get github.com/DATA-DOG/godog/cmd/godog
 
-O ponerlo vendor
+O ponerlo en vendor
 
 
 Descargar Chrome Driver yo lo coloque en la carpeta del proyecto(investigando sobre el tema)

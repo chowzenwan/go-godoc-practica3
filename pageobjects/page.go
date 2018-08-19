@@ -60,7 +60,6 @@ func ClickListView () {
 }
 
 func AddToCart(){
-	//driver.SetImplicitWaitTimeout(time.Second * 1000000)
 	element, err := ByCss(addToCartButton)
 	if err != nil{
 		return
@@ -76,14 +75,10 @@ func GetAddToCartMessage() (message string){
 	elementInnerText, _ := element.GetAttribute("innerText")
 	message = strings.TrimSpace(elementInnerText)
 
-	//if elementInnerText != message {
-	//	return fmt.Errorf("Esperaba: %v - Obtenido: %v", message, elementInnerText)
-	//}
 	return message
 }
 
 func TakeScreenShot(fileName string){
-	//driver.SetImplicitWaitTimeout(time.Millisecond * 2000)
 	time.Sleep(time.Millisecond * 2000)
 	shot, _ := driver.Screenshot()
 	support.SaveImage(shot, fileName)
